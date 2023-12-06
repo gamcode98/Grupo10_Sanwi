@@ -5,9 +5,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Dashboard />}>
-          {/* <Route index element={<Home />} /> */}
-        </Route>
+        <Route index element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   )
