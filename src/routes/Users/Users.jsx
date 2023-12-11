@@ -1,8 +1,24 @@
 import TrashIcon from './../../assets/icons/Trash.svg';
 import PencilIcon from './../../assets/icons/Pencil.svg';
 import css from './Users.module.css';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export function Users() {
+  const [users, setUsers] = useState([])
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch('http://localhost:3000/api/users')
+    .then(response => response.json())
+    .then(data => setUsers(data))
+    .catch(error => console.log(error))
+  },[])
+
+  const goToEditForm = (id) => {
+    navigate(`/users/${id}`)
+  }
   return (
     <div className={css.main}>
       <h1 className={css.title}>Usuarios</h1>
@@ -19,12 +35,13 @@ export function Users() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>John</td>
-              <td>john@example.com</td>
+            {users.map((user) => (              
+            <tr key={user.id}>
+              <td>{user.id}</td>
+              <td>{user.username}</td>
+              <td>{user.email}</td>
               <td>
-                <img src="https://via.placeholder.com/150" alt=""/>
+                <img src={user.image} alt="" width={50}/>
               </td>
               <td>                
                 <button className={`${css.button} ${css.buttonDelete}`}>
@@ -36,7 +53,10 @@ export function Users() {
                 </button>
               </td>
               <td>                
-                <button className={`${css.button} ${css.buttonEdit}`}>
+                <button 
+                  onClick={() => goToEditForm(user.id)}
+                  className={`${css.button} ${css.buttonEdit}`}
+                >
                   <img 
                     src={PencilIcon}
                     alt="Icono de lápiz"
@@ -45,32 +65,7 @@ export function Users() {
                 </button>
               </td>
             </tr>
-            <tr>
-              <td>2</td>
-              <td>Jane</td>
-              <td>jane@example.com</td>
-              <td>
-                <img src="https://via.placeholder.com/150" alt=""/>
-              </td>
-              <td>                
-                <button className={`${css.button} ${css.buttonDelete}`}>
-                  <img 
-                    src={TrashIcon}
-                    alt="Icono de tacho de basura"
-                    className={css.icon}
-                  />                  
-                </button>
-              </td>
-              <td>                
-                <button className={`${css.button} ${css.buttonEdit}`}>
-                  <img 
-                    src={PencilIcon}
-                    alt="Icono de lápiz"
-                    className={css.icon}
-                  />                  
-                </button>
-              </td>
-            </tr>
+            ))}            
           </tbody>
         </table>
       </div>
