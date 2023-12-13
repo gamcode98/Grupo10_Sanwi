@@ -69,6 +69,11 @@ export function Users() {
           </tbody>
         </table>
       </div>
+      <div className={css.footer}>
+        <p className={css.total}>
+          Total: <span className={css.totalValue}>{users.length}</span>
+        </p>
+      </div>
     </div>
   );
 }
