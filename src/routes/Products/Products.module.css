@@ -19,6 +19,7 @@
   overflow: auto;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 1rem;
 }
 
 .table {
@@ -31,12 +32,21 @@ th, td {
   padding: 8px;
 }
 
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+td:nth-child(3) {
+  width: 50px;
+}
+
 .button {
   border: none;
   padding: 1rem;
   border-radius: 10px;
   color: #fff;
   cursor: pointer;
+  width: 100%;
 }
 
 .buttonDelete {
@@ -47,8 +57,43 @@ th, td {
   background-color: #F57423;
 }
 
+.buttonCancel {
+  color: #000;
+}
+
 .icon {
   width: 30px;
+}
+
+.dialog {
+  border: none;
+  padding: 1.5rem;
+  border-radius: 30px;
+  box-shadow: 12px 7px 0px 0px #cd333352;
+  background-color: #fff;
+  overflow: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.total {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.totalValue {
+  font-weight: 700;
 }
 
 @media screen and (min-width: 768px) {
@@ -59,6 +104,10 @@ th, td {
 
 @media screen and (min-width: 1024px) {
   .container {
+    width: 70%;
+  }
+
+  .footer {
     width: 70%;
   }
 

@@ -1,12 +1,16 @@
 import TrashIcon from './../../assets/icons/Trash.svg';
 import PencilIcon from './../../assets/icons/Pencil.svg';
 import css from './Products.module.css';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export function Products() {
   const [products, setProducts] = useState([])
+  const [reload, setReload] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [productId, setProductId] = useState()
+  const modal = useRef();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,9 +18,37 @@ export function Products() {
     .then(response => response.json())
     .then(data => setProducts(data))
     .catch(error => console.log(error))
-  },[])
+  },[reload])
 
-  return (
+  const goToEditForm = (id) => {
+    navigate(`/products/${id}`)
+  }
+
+  const openModal = (id) => {
+    setProductId(id)
+    modal.current.showModal();
+  }
+
+  const closeModal = () => {
+    modal.current.close();
+  }
+
+  const deleteProduct = () => {
+    setIsLoading(true)
+    fetch(`http://localhost:3000/api/products/${productId}`, {
+      method: 'DELETE'
+    })
+    .then(() => {
+      setReload(!reload)
+    })
+    .catch(error => console.log(error))
+    .finally(() => {
+      setIsLoading(false)
+      closeModal()
+    })
+  }
+
+  return (    
     <div className={css.main}>
       <h1 className={css.title}>Productos</h1>
       <div className={css.container}>
@@ -27,9 +59,6 @@ export function Products() {
               <th>Nombre</th>
               <th>Precio</th>
               <th>Descripción</th>
-              {/* <th>Descuento</th>
-              <th>Categoría</th>
-              <th>Stock</th> */}
               <th>Imagen</th>
               <th>Eliminar</th>
               <th>Editar</th>
@@ -40,16 +69,16 @@ export function Products() {
             <tr key={product.id}>
               <td>{product.id}</td>
               <td>{product.name}</td>
-              <td>{product.price} $</td>
+              <td>$ {product.price}</td>
               <td>{product.description}</td>
-              {/* <td>{product.discount}%</td>
-              <td>{product.category.name}</td>
-              <td>{product.stock} U</td> */}
               <td>
-                <img src={product.image} alt="" width={50}/>
+                <img src={product.image} alt="product image" width={70}/>
               </td>
               <td>                
-                <button className={`${css.button} ${css.buttonDelete}`}>
+                <button 
+                  className={`${css.button} ${css.buttonDelete}`}
+                  onClick={()=> openModal(product.id)}
+                  >
                   <img 
                     src={TrashIcon}
                     alt="Icono de tacho de basura"
@@ -74,6 +103,29 @@ export function Products() {
           </tbody>
         </table>
       </div>
+      
+      <div className={css.footer}>
+        <p className={css.total}>
+          Total: <span className={css.totalValue}>{products.length}</span>
+        </p>
+      </div>
+      
+      <dialog className={css.dialog} ref={modal}>
+        <h3>¿Esta seguro de eliminar este producto?</h3>
+        <div className={css.buttons}>
+          <button 
+          onClick={deleteProduct}
+          className={`${css.button} ${css.buttonDelete}`}
+          disabled={isLoading}
+          >{isLoading ? 'Eliminando...' : 'Eliminar'}</button>
+          <button 
+          onClick={closeModal}
+          className={`${css.button} ${css.buttonCancel}`}
+          disabled={isLoading}
+          >Cancelar</button>
+          </div>     
+      </dialog>
+
     </div>
   );
 }
