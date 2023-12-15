@@ -3,7 +3,7 @@ import PencilIcon from './../../assets/icons/Pencil.svg';
 import css from './Products.module.css';
 import { useEffect, useRef } from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 export function Products() {
   const [products, setProducts] = useState([])
@@ -15,10 +15,10 @@ export function Products() {
 
   useEffect(() => {
     fetch('http://localhost:3000/api/products')
-    .then(response => response.json())
-    .then(data => setProducts(data))
-    .catch(error => console.log(error))
-  },[reload])
+      .then(response => response.json())
+      .then(data => setProducts(data))
+      .catch(error => console.log(error))
+  }, [reload])
 
   const goToEditForm = (id) => {
     navigate(`/products/${id}`)
@@ -38,17 +38,17 @@ export function Products() {
     fetch(`http://localhost:3000/api/products/${productId}`, {
       method: 'DELETE'
     })
-    .then(() => {
-      setReload(!reload)
-    })
-    .catch(error => console.log(error))
-    .finally(() => {
-      setIsLoading(false)
-      closeModal()
-    })
+      .then(() => {
+        setReload(!reload)
+      })
+      .catch(error => console.log(error))
+      .finally(() => {
+        setIsLoading(false)
+        closeModal()
+      })
   }
 
-  return (    
+  return (
     <div className={css.main}>
       <h1 className={css.title}>Productos</h1>
       <div className={css.container}>
@@ -65,66 +65,69 @@ export function Products() {
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (              
-            <tr key={product.id}>
-              <td>{product.id}</td>
-              <td>{product.name}</td>
-              <td>$ {product.price}</td>
-              <td>{product.description}</td>
-              <td>
-                <img src={product.image} alt="product image" width={70}/>
-              </td>
-              <td>                
-                <button 
-                  className={`${css.button} ${css.buttonDelete}`}
-                  onClick={()=> openModal(product.id)}
+            {products.map((product) => (
+              <tr key={product.id}>
+                <td>{product.id}</td>
+                <td>{product.name}</td>
+                <td>$ {product.price}</td>
+                <td>{product.description}</td>
+                <td>
+                  <img src={product.image} alt="product image" width={70} />
+                </td>
+                <td>
+                  <button
+                    className={`${css.button} ${css.buttonDelete}`}
+                    onClick={() => openModal(product.id)}
                   >
-                  <img 
-                    src={TrashIcon}
-                    alt="Icono de tacho de basura"
-                    className={css.icon}
-                  />                  
-                </button>
-              </td>
-              <td>                
-                <button 
-                  onClick={() => goToEditForm(product.id)}
-                  className={`${css.button} ${css.buttonEdit}`}
-                >
-                  <img 
-                    src={PencilIcon}
-                    alt="Icono de lápiz"
-                    className={css.icon}
-                  />                  
-                </button>
-              </td>
-            </tr>
-            ))}            
+                    <img
+                      src={TrashIcon}
+                      alt="Icono de tacho de basura"
+                      className={css.icon}
+                    />
+                  </button>
+                </td>
+                <td>
+                  <button
+                    onClick={() => goToEditForm(product.id)}
+                    className={`${css.button} ${css.buttonEdit}`}
+                  >
+                    <img
+                      src={PencilIcon}
+                      alt="Icono de lápiz"
+                      className={css.icon}
+                    />
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
-      
+
       <div className={css.footer}>
         <p className={css.total}>
           Total: <span className={css.totalValue}>{products.length}</span>
         </p>
       </div>
-      
+
       <dialog className={css.dialog} ref={modal}>
         <h3>¿Esta seguro de eliminar este producto?</h3>
         <div className={css.buttons}>
-          <button 
-          onClick={deleteProduct}
-          className={`${css.button} ${css.buttonDelete}`}
-          disabled={isLoading}
+          <button
+            onClick={deleteProduct}
+            className={`${css.button} ${css.buttonDelete}`}
+            disabled={isLoading}
           >{isLoading ? 'Eliminando...' : 'Eliminar'}</button>
-          <button 
-          onClick={closeModal}
-          className={`${css.button} ${css.buttonCancel}`}
-          disabled={isLoading}
+          <button
+            onClick={closeModal}
+            className={`${css.button} ${css.buttonCancel}`}
+            disabled={isLoading}
           >Cancelar</button>
-          </div>     
+        </div>
       </dialog>
+      <div>
+        <Link className={css.link} to={"/"}>Volver</Link>
+      </div>
 
     </div>
   );
