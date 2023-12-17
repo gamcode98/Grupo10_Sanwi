@@ -4,6 +4,7 @@ import { Users } from './routes/Users/Users'
 import { Products } from './routes/Products/Products'
 import { ProductForm } from './routes/ProductForm/ProductForm'
 import { ProductDetail } from './routes/ProductDetail/ProductDetail'
+import { Categories } from './routes/Categories/Categories'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path='/products' element={<Products />} />
         <Route path='/products/edit/:id' element={<ProductForm />} />
         <Route path='/products/detail/:id' element={<ProductDetail />} />
+        <Route path='/categories' element={<Categories />} />
       </Routes>
     </BrowserRouter>
   )
