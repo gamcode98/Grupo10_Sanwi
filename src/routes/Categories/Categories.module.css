@@ -17,6 +17,7 @@
 .table {
   border-collapse: collapse;
   border-spacing: 0;
+  width: 100%;
 }
 
 th, td {
@@ -123,7 +124,7 @@ td:nth-child(3) {
   }
 
   .table {
-    width: 100%;
+    width: 100%;    
   }
 
   th, td {

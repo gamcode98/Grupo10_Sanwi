@@ -1,8 +1,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Dashboard } from './routes/Dashboard/Dashboard'
 import { Users } from './routes/Users/Users'
-import { UserDetail } from './routes/UserDetail/UserDetail'
 import { Products } from './routes/Products/Products'
+import { ProductForm } from './routes/ProductForm/ProductForm'
+import { ProductDetail } from './routes/ProductDetail/ProductDetail'
+import { Categories } from './routes/Categories/Categories'
 
 function App() {
   return (
@@ -10,8 +12,10 @@ function App() {
       <Routes>
         <Route index element={<Dashboard />} />
         <Route path='/users' element={<Users />} />
-        <Route path='/users/:id' element={<UserDetail />} />
         <Route path='/products' element={<Products />} />
+        <Route path='/products/edit/:id' element={<ProductForm />} />
+        <Route path='/products/detail/:id' element={<ProductDetail />} />
+        <Route path='/categories' element={<Categories />} />
       </Routes>
     </BrowserRouter>
   )

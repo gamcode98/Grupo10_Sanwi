@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.image {
+  width: 100%;
+  display: block;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.link {
+  position: absolute;
+  top: 1rem;
+  left: 2rem;
+  background-color: #F57423;
+  color: white;
+  border-radius: .5rem;
+  text-decoration: none;
+  padding: .8rem;
+  display: block;
+  text-align: center;
+  font-weight: 700;
+  
+}

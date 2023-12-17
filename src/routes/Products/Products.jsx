@@ -1,5 +1,6 @@
 import TrashIcon from './../../assets/icons/Trash.svg';
 import PencilIcon from './../../assets/icons/Pencil.svg';
+import DocumentMagnifyingGlassIcon  from './../../assets/icons/DocumentMagnifyingGlass.svg';
 import css from './Products.module.css';
 import { useEffect, useRef } from 'react';
 import { useState } from 'react';
@@ -21,7 +22,7 @@ export function Products() {
   }, [reload])
 
   const goToEditForm = (id) => {
-    navigate(`/products/${id}`)
+    navigate(`/products/edit/${id}`)
   }
 
   const openModal = (id) => {
@@ -31,6 +32,10 @@ export function Products() {
 
   const closeModal = () => {
     modal.current.close();
+  }
+
+  const goToDetails = (id) => {
+    navigate(`/products/detail/${id}`)
   }
 
   const deleteProduct = () => {
@@ -61,6 +66,7 @@ export function Products() {
               <th>Descripción</th>
               <th>Imagen</th>
               <th>Eliminar</th>
+              <th>Detalle</th>
               <th>Editar</th>
             </tr>
           </thead>
@@ -82,6 +88,18 @@ export function Products() {
                     <img
                       src={TrashIcon}
                       alt="Icono de tacho de basura"
+                      className={css.icon}
+                    />
+                  </button>
+                </td>
+                <td>
+                  <button
+                    className={`${css.button} ${css.buttonDetail}`}
+                    onClick={() => goToDetails(product.id)}
+                  >
+                    <img
+                      src={DocumentMagnifyingGlassIcon}
+                      alt="Icono de documento de detalle" 
                       className={css.icon}
                     />
                   </button>
