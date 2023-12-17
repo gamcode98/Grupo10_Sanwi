@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import css from "./ProductForm.module.css";
 
 export function ProductForm() {
   const { id } = useParams();
   const [product, setProduct] = useState();
+  const navigation = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:3000/api/products/${id}`)
@@ -18,15 +19,20 @@ export function ProductForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-    const data = {
-      image: formData.get("image"),
-      name: formData.get("name"),
-      price: formData.get("price"),
-      description: formData.get("description"),
-    }
 
-    console.log({data});
+   console.log('formData', formData);
+    fetch(`http://localhost:3000/api/products/${id}`, {
+      method: "PUT",
+      body: formData,
+    })
+    .then(response => response.json())
+    .then(() => {
+      navigation('/products')
+      
+    })
+    .catch(error => console.log(error))
   }
+
 
   return (
     <div className={css.container}>
@@ -40,7 +46,11 @@ export function ProductForm() {
         />
         <div className={css.control}>
           <label htmlFor="image">Seleccione una imagen</label>
-          <input type="file" name="image" id="image" />
+          <input 
+            type="file"
+            name="image"
+            id="image"
+          />
         </div>
         <div className={css.control}>
           <label htmlFor="name">Nombre</label>
