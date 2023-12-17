@@ -49,6 +49,10 @@ td:nth-child(3) {
   background-color: #F57423;
 }
 
+.buttonDetail {
+  background-color: #6ea8fe;
+}
+
 .buttonCancel {
   color: #000;
 }
