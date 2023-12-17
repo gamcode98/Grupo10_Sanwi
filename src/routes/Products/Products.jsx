@@ -21,7 +21,7 @@ export function Products() {
   },[reload])
 
   const goToEditForm = (id) => {
-    navigate(`/products/${id}`)
+    navigate(`/products/edit/${id}`)
   }
 
   const openModal = (id) => {
