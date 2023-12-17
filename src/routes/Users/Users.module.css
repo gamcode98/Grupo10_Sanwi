@@ -51,6 +51,37 @@ th, td {
   width: 30px;
 }
 
+.footer {
+  width: 70%;
+  padding-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.total {
+  display: flex;
+  font-size: 16px;
+  font-weight: 500;
+  justify-content: flex-end;
+}
+
+.totalValue {
+  font-weight: 700;
+}
+.link {
+  background-color: #F57423;
+  color: white;
+  border-radius: .5rem;
+  text-decoration: none;
+  padding: .8rem;
+  display: block;
+  text-align: center;
+  font-weight: 700;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10%;
+}
 @media screen and (min-width: 768px) {
   .container {
     width: 90%;

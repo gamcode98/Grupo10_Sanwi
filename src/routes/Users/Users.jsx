@@ -3,7 +3,7 @@ import PencilIcon from './../../assets/icons/Pencil.svg';
 import css from './Users.module.css';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 export function Users() {
   const [users, setUsers] = useState([])
@@ -68,6 +68,14 @@ export function Users() {
             ))}            
           </tbody>
         </table>
+      </div>
+      <div className={css.footer}>
+        <p className={css.total}>
+          Total: <span className={css.totalValue}>{users.length}</span>
+        </p>
+      </div>
+      <div >
+        <Link className={css.link} to={"/"}>Volver</Link>
       </div>
     </div>
   );
