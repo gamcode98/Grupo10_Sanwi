@@ -33,21 +33,23 @@ export function Dashboard() {
   }, [])
 
   return (
-    <>
+    <div className={css.body}>
       <div className={css.container}>
         {routes.map((route) => (
           <Card key={route.id}>
-            <h2>{route.name}</h2>
-            <a
-              className={css.link}
-              href={route.path}>{route.name}</a>
+            <section>
+              <h2>{route.name}</h2>
+              <a
+                className={css.link}
+                href={route.path}>Acceder al Panel</a>
+            </section>
           </Card>
         ))}
       </div>
       <div className={css.product}>
         <h1>Último producto creado</h1>
-          <h2>{lastProduct.name}</h2>
-          <img src={lastProduct.image} alt="" width={300} />
+        <h2>{lastProduct.name}</h2>
+        <img src={lastProduct.image} alt="" width={300} />
         <table className={css.table}>
           <tbody>
             <tr>
@@ -66,6 +68,6 @@ export function Dashboard() {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 }
