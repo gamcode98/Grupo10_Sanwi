@@ -1,0 +1,84 @@
+.body{
+  background-image: url(/src/assets/img/sanwi_fondo_user.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 2rem;
+}
+
+.container h2{
+  text-align: center;
+}
+
+.link {
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+  border-radius: .5rem;
+  text-decoration: none;
+  padding: .8rem;
+  display: block;
+  text-align: center;
+  font-weight: 700;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.product{
+  padding: .8rem;
+  text-align: center;
+  font-weight: 700;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 100vh;
+  border-radius: 30px;
+  background-color: #fff;
+  width: 80%;
+  overflow: auto;
+}
+.table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.product h2{
+  font-weight: normal;
+}
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+td{
+  font-weight: normal;
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    width: 100%;
+  }
+
+  .table {
+    width: 100%;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 16px;
+  }
+}
+
+@media screen and (max-width: 700px){
+  .container{
+    margin: 0;
+    display: block;
+    padding: 60px;
+    text-align: center;
+  }
+
+}

@@ -1,0 +1,134 @@
+.title {
+  text-align: center;
+}
+
+.container {
+  padding: 1rem;
+  border-radius: 30px;
+  box-shadow: 12px 7px 0px 0px #cd333352;
+  background-color: #fff;
+  width: 100%;
+  overflow: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+}
+
+.table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+td:nth-child(3) {
+  width: 50px;
+}
+
+.button {
+  border: none;
+  padding: 1rem;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  width: 100%;
+}
+
+.buttonDelete {
+  background-color: #CD3333;
+}
+
+.buttonEdit {
+  background-color: #F57423;
+}
+
+.buttonDetail {
+  background-color: #6ea8fe;
+}
+
+.buttonCancel {
+  color: #000;
+}
+
+.icon {
+  width: 30px;
+}
+
+.dialog {
+  border: none;
+  padding: 1.5rem;
+  border-radius: 30px;
+  box-shadow: 12px 7px 0px 0px #cd333352;
+  background-color: #fff;
+  overflow: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.total {
+  display: flex;
+  font-size: 16px;
+  font-weight: 500;
+  justify-content: flex-end;
+}
+
+.totalValue {
+  font-weight: 700;
+}
+
+.link {
+  background-color: #F57423;
+  color: white;
+  border-radius: .5rem;
+  text-decoration: none;
+  padding: .8rem;
+  display: block;
+  text-align: center;
+  font-weight: 700;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10%;
+}
+@media screen and (min-width: 768px) {
+  .container {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    width: 70%;
+  }
+
+  .footer {
+    width: 70%;
+  }
+
+  .table {
+    width: 100%;    
+  }
+
+  th, td {
+    text-align: left;
+    padding: 16px;
+  }
+}
